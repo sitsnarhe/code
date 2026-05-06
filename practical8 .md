@@ -1,0 +1,20 @@
+clc; 
+clear; 
+close all; 
+fs = 1000; 
+t = 0:1/fs:1; 
+signal = sin(2*pi*10*t); 
+noise = randn(size(t)); 
+noisy_signal = signal + noise; 
+Ps = mean(signal.^2); 
+Pn = mean(noise.^2); 
+SNR = 10*log10(Ps/Pn); 
+SNR_input = 30; 
+SNR_output = SNR; 
+NF = SNR_input/SNR_output; 
+NF_dB = 10*log10(NF); 
+disp(['SNR = ', num2str(SNR),' dB']); 
+disp(['Noise Figure = ', num2str(NF_dB),' dB']); 
+plot(t,noisy_signal); 
+title('Signal with White Noise');
+
